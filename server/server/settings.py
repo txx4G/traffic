@@ -12,9 +12,17 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
+import environ
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = environ.Env(
+    DEBUG=(bool, True),
+    ALLOWED_HOSTS=(list, ['*']),
+    SITE_URL=(str, 'http://127.0.0.1'),
+)
+environ.Env.read_env(env_file=BASE_DIR / '.env')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -37,7 +45,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
     'pages',
+    'map_traffic',
+    'employee',
 ]
 
 MIDDLEWARE = [
@@ -76,7 +87,7 @@ WSGI_APPLICATION = 'server.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.contrib.gis.db.backends.spatialite',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
@@ -128,3 +139,9 @@ MEDIA_ROOT = '../media'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# for GeoDjango
+
+GDAL_LIBRARY_PATH = env.str('GDAL_LIBRARY_PATH', default=None)
+GEOS_LIBRARY_PATH = env.str('GEOS_LIBRARY_PATH', default=None)
+SPATIALITE_LIBRARY_PATH = env.str('SPATIALITE_LIBRARY_PATH', default=None)
