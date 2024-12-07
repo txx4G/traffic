@@ -2,13 +2,13 @@ ymaps.ready(init);
 
 function init() {
     // Создание карты.
-    const map = new ymaps.Map('map', {
+    const map = new ymaps.Map('api_map', {
         center: [45.03547, 38.975313], // Центр Краснодара.
         zoom: 12,
         controls: ['zoomControl', 'fullscreenControl']
     });
 
-    const points = JSON.parse(document.getElementById('problem_points').textContent);
+    const points = JSON.parse(document.getElementById('problem_places').textContent);
     let problems = document.getElementById('problems');
 
     // Добавляем метки на карту.
@@ -27,7 +27,7 @@ function init() {
         });
 
         let problem_item = document.createElement('div');
-        problem_item.innerHTML = `<a href="/problem/${point.coords}/" target="_blank">${point.name}</a>`
+        problem_item.innerHTML = `<a href="${point.link}" target="_blank">${point.name}</a>`
         problems.appendChild(problem_item);
         
     });

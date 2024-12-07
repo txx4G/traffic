@@ -7,21 +7,42 @@
     <title>ЦОДД</title>
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <!-- <script src="https://api-maps.yandex.ru/v3/?apikey=57dec7ab00274131915f10193ff16f29&lang=ru_RU"></script> -->
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=57dec7ab-0027-4131-915f-10193ff16f29&lang=ru_RU" type="text/javascript"></script>
     {% block head %}{% endblock %}
-    <script src="{% static 'js/index.js' %}"></script>
+    <!-- <script src="{% static 'js/index.js' %}"></script> -->
 </head>
 <body>
-    <header style="height:4vh;">
-        <h1>Система управления дорожным движением</h1>
+    <header style="height:8vh;display:flex;flex-direction: row;">
+        <div style="text-align:center;">
+            <h1><span style="font-size:14pt;">Панель управления</span> <br> <span style="font-size:14pt;">оператора ЦОДД</span> </h1>
+        </div>
+        <div style="display: flex; align-items: center;">
+            <a href="{% url 'index' %}">Главная</a>
+            <a href="{% url 'claim' %}">Заявки</a>
+            <a href="{% url 'effective' %}">Оценка эффективности</a>
+        </div>
     </header>
-    <main style="height:94vh;">
+    <main style="height:90vh;">
         {% block content %}{% endblock %}
     </main>
 
     <style>
         h1 {
             margin: 0;
+        }
+        header {
+            justify-content: space-between;
+            padding: 10px 25px;
+        }
+        header h1 {
+            text-transform: uppercase;
+            font-size: 18pt;
+            text-align: center;
+        }
+        header a {
+            display: inline-block;
+            color: white;
+            margin-left: 26px;
+            text-decoration: none;
         }
     </style>
 </body>

@@ -16,16 +16,5 @@
             "autoStartBrowser": false,
             "program": "${workspaceFolder}\\server\\manage.py"
         },
-        {
-            "name": "Run: WS",
-            "type": "debugpy",
-            "request": "launch",
-            "args": [
-                "server",
-            ],
-            "django": true,
-            "autoStartBrowser": false,
-            "program": "${workspaceFolder}\\server\\manage.py"
-        }
     ]
 }

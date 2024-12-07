@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    {{ claims|json_script:'claims' }}
+{% endblock %}
+
+{% block content %}
+    <div class="claims" id="claims">
+    </div>
+
+    <style>
+        .claims {
+        }
+    </style>
+{% endblock %}
