@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="map">
+        <!-- <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ad4238a01e4de1c190c23c52afa41cff5d9de77313ebeaf837f4b86c13f2366c5&amp;width=960&amp;height=720&amp;lang=ru_RU&amp;scroll=true"></script> -->
+        <!-- <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ad4238a01e4de1c190c23c52afa41cff5d9de77313ebeaf837f4b86c13f2366c5&amp;width=960&amp;height=720&amp;lang=ru_RU&amp;scroll=true"></script> -->
+        <!-- <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A8591b5e3bd0516d8c6d5b3c15b951ed16e305cc4466bdecb756748f9cbc0d378&amp;width=100%&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script> -->
+        <script type="text/javascript" charset="utf-8" async 
+        src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A8ff03a9d95df6659604d3bcb60e8d341a62d9e56d11d2109f6e578c951247aa6&amp;width=490&amp;height=535&amp;lang=ru_RU&amp;scroll=true">
+
+            //src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A2d7260ac0873f658a441ae29ee4c2da9f605259715b56c8d1bdecfaf998ea282&amp;width=100%&amp;height=100%&amp;lang=ru_RU&amp;scroll=true"></script>
+    </div>
+    <!-- <div id="app" style="width: 600px; height: 400px"></div> -->
+
+    <div class="problems">
+        <div><a href="{% url 'problem' %}" target="_blank">Проблема 1</a></div>
+        <div><a href="" target="_blank">Проблема 2</a></div>
+        <div><a href="" target="_blank">Проблема 3</a></div>
+        <div><a href="" target="_blank">Проблема 4</a></div>
+        <div><a href="" target="_blank">Проблема 5</a></div>
+        <div><a href="" target="_blank">Проблема 6</a></div>
+        <div><a href="" target="_blank">Проблема 6</a></div>
+        <div><a href="" target="_blank">Проблема 6</a></div>
+        <div><a href="" target="_blank">Проблема 6</a></div>
+        <div><a href="" target="_blank">Проблема 6</a></div>
+        <div><a href="" target="_blank">Проблема 6</a></div>
+    </div>
+
+    <style>
+        .map {
+            width:100%;
+            height: 70%;
+        }
+        .problems {
+            text-align: left;
+            height: 30%;
+            overflow-y: auto;
+        }
+        .problems > div {
+            padding: 20px 20px 20px 10px;
+            font-size: 16pt;
+            border-bottom: 1px solid lightgray;
+        }
+        .problems > div a {
+            text-decoration: none;
+            width: 100%;
+            display:block;
+        }
+        .problems > div:hover {
+            background: lightgrey;
+        }
+        </style>
+{% endblock %}
