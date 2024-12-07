@@ -7,10 +7,9 @@
 
 
 {% block content %}
-    <h2>Карта</h2>
     <div class="panel">
         <div class="left">
-            <div class="gallery js-flickity" data-flickity-options='{ "wrapAround": true }'>
+            <div class="gallery js-flickity" data-flickity-options='{ "wrapAround": true }' class="video">
                 {% for camera in cameras %}
                 <video class="gallery-cell" width="100%" controls>
                     <source src="{{ camera.local_video }}" type="video/mp4">
@@ -18,7 +17,7 @@
                 </video>
                 {% endfor %}
             </div>
-            <div>
+            <div class="map">
                 <script type="text/javascript" charset="utf-8" async src="{{ map_link }}"></script>
             </div>
         </div>
@@ -37,16 +36,27 @@
         .panel {
             display: flex;
             flex-direction: row;
+            height: 100%;
         }
         .left {
             display: flex;
             flex-direction: column;
-            height: 70vh;
+            height: 100%;
             width: 60%;
         }
         .left > div {
             width: 100%;
-            height: 49vh;
+        }
+
+        .right {
+            height: 100%;
+        }
+
+        .video {
+            height: 40%;
+        }
+        .map {
+            height: 59%;
         }
     </style>
 {% endblock %}

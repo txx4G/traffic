@@ -143,5 +143,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # for GeoDjango
 
 GDAL_LIBRARY_PATH = env.str('GDAL_LIBRARY_PATH', default=None)
+if GDAL_LIBRARY_PATH:
+    GDAL_LIBRARY_PATH = str((BASE_DIR / GDAL_LIBRARY_PATH).resolve())
+
 GEOS_LIBRARY_PATH = env.str('GEOS_LIBRARY_PATH', default=None)
-SPATIALITE_LIBRARY_PATH = env.str('SPATIALITE_LIBRARY_PATH', default=None)
+if GEOS_LIBRARY_PATH:
+    GEOS_LIBRARY_PATH = str((BASE_DIR / GEOS_LIBRARY_PATH).resolve())
+
+SPATIALITE_LIBRARY_PATH =env.str('SPATIALITE_LIBRARY_PATH', default=None)

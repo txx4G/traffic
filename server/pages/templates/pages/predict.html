@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<h2>Гистограмма уровня критичности по часам с особенностями</h2>
+<canvas id="criticalityChart" width="600" height="200"></canvas>
+
+<h3>Обозначения</h3>
+
+<ul style="text-align:left;">
+    <li>⛈ - осадки</li>
+    <li>🎉 - событие</li>
+</ul>
+
+<script>
+    const ctx = document.getElementById('criticalityChart').getContext('2d');
+    const hours = [...Array(24).keys()]; // Часы с 0 по 23
+    const criticalityLevels = [
+        2, 3, 4, 5, 6, 7, 8, 9, 4, 3, 2, 6, 5, 8, 7, 6, 4, 2, 1, 3, 4, 5, 6, 7
+    ]; // Пример уровней критичности
+    const features = [
+        "neutral", "neutral", "precipitation", "precipitation", "precipitation", "neutral", "neutral", "neutral",
+        "neutral", "event", "neutral", "neutral", "neutral", "event", "neutral", "neutral", "neutral", 
+        "neutral", "neutral", "event", "neutral", "neutral", "precipitation", "event", "neutral"
+    ]; // Столбец особенностей
+
+    // Функция для выбора цвета в зависимости от уровня критичности
+    const getColor = (level) => {
+        if (level >= 1 && level <= 3) return 'green';
+        if (level >= 4 && level <= 5) return 'yellow';
+        if (level >= 6 && level <= 7) return 'orange';
+        return 'red'; // Для уровней 8-10
+    };
+
+    // Массивы для данных графика
+    const backgroundColors = criticalityLevels.map(getColor); // Цвета для столбцов
+    const borderColors = criticalityLevels.map(getColor); // Цвета для границ столбцов
+
+    // Данные для отображения осадков и событий
+    const annotations = features.map((feature, index) => {
+        if (feature === "precipitation") {
+            return {
+                x: hours[index],
+                y: criticalityLevels[index] + 0.5, // Позиция осадки чуть выше уровня критичности
+                symbol: '⛈' // Значок осадков
+            };
+        }
+        if (feature === "event") {
+            return {
+                x: hours[index],
+                y: criticalityLevels[index] + 0.5, // Позиция события чуть выше уровня критичности
+                symbol: '🎉' // Значок события
+            };
+        }
+        return null; // Если нейтральная особенность, ничего не отображаем
+    }).filter(annotation => annotation !== null); // Отфильтровываем нейтральные особенности
+ // Создание графика
+    const chart = new Chart(ctx, {
+        type: 'bar', // Тип диаграммы - гистограмма
+        data: {
+            labels: hours, // Метки по оси X (часы)
+            datasets: [{
+                label: 'Уровень критичности',
+                data: criticalityLevels, // Данные по уровням критичности
+                backgroundColor: backgroundColors, // Цвет столбцов
+                borderColor: borderColors, // Цвет границ столбцов
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Час дня'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Уровень критичности'
+                    },
+                    min: 0,
+                    max: 10
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return `Час: ${tooltipItem.label}, Критичность: ${tooltipItem.raw}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // Добавляем аннотации (осадки и события) на график
+    annotations.forEach(annotation => {
+        chart.canvas.addEventListener('mousemove', (event) => {
+            const ctx = chart.ctx;
+            const x = chart.scales.x.getPixelForValue(annotation.x);
+            const y = chart.scales.y.getPixelForValue(annotation.y);
+            ctx.font = '18px Arial';
+            ctx.fillText(annotation.symbol, x - 10, y);
+        });
+    });
+
+</script>
+
+{% endblock %}

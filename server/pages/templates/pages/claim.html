@@ -1,15 +1,71 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    {{ claims|json_script:'claims' }}
+    {{ claims|json_script:'claims_json' }}
 {% endblock %}
 
 {% block content %}
     <div class="claims" id="claims">
+        <div class="accepted">
+            <h4>Регистрация заявки</h4>
+        </div>
+        <div class="received">
+            <h4>Поступившие заявки</h4>
+
+            <div class="table-container">
+                <table id="claims_table">
+                    <tr>
+                        <th>Время</th>
+                        <th>Телефон</th>
+                        <th>Координаты</th>
+                        <th>Подробности</th>
+                        <th>Фото</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
+
+    <script>
+        let table = document.getElementById('claims_table')
+        const claims = JSON.parse(document.getElementById('claims_json').textContent);
+        function add_claim(claim) {
+            let tr = document.createElement('tr');
+            tr.innerHTML += `
+                <td>${claim.dt}<td>
+                <td>${claim.phone}<td>
+                <td>${claim.coords}<td>
+                <td>${claim.description}<td>
+                <td><img src="${claim.photo}" width="100" height="auto"><td>
+            `;
+            table.appendChild(tr);
+        }
+        claims.forEach(add_claim);
+    </script>
 
     <style>
         .claims {
+            display: flex;
+            flex-direction: row;
+            height: 40vh;
         }
+
+        .received {
+            width: 50%;
+            height: 100%
+        }
+
+        .accepted {
+            width: 50%;
+        }
+
+        #claims_table {
+        }
+
+        .table-container {
+            height: 100%;
+            overflow-y: auto;
+        }
+
     </style>
 {% endblock %}

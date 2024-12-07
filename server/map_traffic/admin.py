@@ -1,5 +1,5 @@
 from django.contrib import admin
-from map_traffic.models import Camera, Problem
+from map_traffic.models import Camera, Problem, Claim
 
 
 class CameraAdmin(admin.ModelAdmin):
@@ -14,3 +14,10 @@ class ProblemAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Problem, ProblemAdmin)
+
+
+class ClaimAdmin(admin.ModelAdmin):
+    list_display = ('id', 'point')
+
+
+admin.site.register(Claim, ClaimAdmin)

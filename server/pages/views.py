@@ -41,6 +41,16 @@ class ProblemView(View):
 class ClaimView(View):
     def get(self, request):
         context = {
+            'claims': [
+                {'phone': '+735467586', 'coords': [3456, 5785], 'dt': '23.12.45 20:12', 'description': 'Sed ut perspiciatis, unde omnis iste natus error sit volupta hitecto'},
+                {'phone': '+754678654', 'coords': [3456, 5785], 'dt': '23.12.45 20:12', 'description': 'perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremquperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto'},
+                {'phone': '+743564784', 'coords': [5436, 5464], 'dt': '23.12.45 20:12', 'description': 'iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto'},
+                {'phone': '+702938484', 'coords': [3456, 5785], 'dt': '23.12.45 20:12', 'description': ' natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam etis et quasi architecto'},
+                {'phone': '+743564543', 'coords': [3456, 5785], 'dt': '23.12.45 20:12', 'description': 'Sed unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto'},
+                {'phone': '+734567535', 'coords': [9808, 5785], 'dt': '23.12.45 20:12', 'description': 'perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto'},
+                {'phone': '+732454674', 'coords': [3456, 5785], 'dt': '23.12.45 20:12', 'description': ' iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto'},
+                {'phone': '+732454675', 'coords': [3456, 5785], 'dt': '23.12.45 20:12', 'description': 'Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantiuo'},
+            ]
         }
         return render(request, 'pages/claim.html', context)
 
@@ -50,3 +60,11 @@ class EffectiveView(View):
         context = {
         }
         return render(request, 'pages/effective.html', context)
+
+
+
+class PredictView(View):
+    def get(self, request):
+        context = {
+        }
+        return render(request, 'pages/predict.html', context)

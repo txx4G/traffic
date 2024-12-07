@@ -29,3 +29,16 @@ class Problem(gis_models.Model):
     class Meta:
         verbose_name = 'Проблемное место'
         verbose_name_plural = 'Проблемные места'
+
+
+class Claim(gis_models.Model):
+    UPLOAD_TO = 'claim_photo'
+
+    point = gis_models.PointField('Позиция на карте')
+    description = models.TextField('Описание проблемы')
+    phone = models.IntegerField('Номер телефона')
+    photo = models.FileField('Фотография события', upload_to=UPLOAD_TO)
+
+    class Meta:
+        verbose_name = 'Заявка'
+        verbose_name_plural = 'Заявки'
