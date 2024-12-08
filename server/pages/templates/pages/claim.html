@@ -2,6 +2,8 @@
 
 {% block head %}
     {{ claims|json_script:'claims_json' }}
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -12,15 +14,20 @@
         <div class="received">
             <h4>Поступившие заявки</h4>
 
-            <div class="table-container">
-                <table id="claims_table">
-                    <tr>
-                        <th>Время</th>
-                        <th>Телефон</th>
-                        <th>Координаты</th>
-                        <th>Подробности</th>
-                        <th>Фото</th>
-                    </tr>
+            <div class="table-container relative overflow-x-auto">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">Время</th>
+                            <th scope="col" class="px-6 py-3">Телефон</th>
+                            <th scope="col" class="px-6 py-3">Координаты</th>
+                            <th scope="col" class="px-6 py-3">Подробности</th>
+                            <th scope="col" class="px-6 py-3">Фото</th>
+                        </tr>
+                    </thead>
+                    <tbody id="claims_table">
+
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -32,11 +39,11 @@
         function add_claim(claim) {
             let tr = document.createElement('tr');
             tr.innerHTML += `
-                <td>${claim.dt}<td>
-                <td>${claim.phone}<td>
-                <td>${claim.coords}<td>
-                <td>${claim.description}<td>
-                <td><img src="${claim.photo}" width="100" height="auto"><td>
+                <td>${claim.dt}</td>
+                <td>${claim.phone}</td>
+                <td>${claim.coords}</td>
+                <td>${claim.description}</td>
+                <td><img src="${claim.photo}" width="100" height="auto"></td>
             `;
             table.appendChild(tr);
         }
@@ -51,12 +58,12 @@
         }
 
         .received {
-            width: 50%;
+            width: 60%;
             height: 100%
         }
 
         .accepted {
-            width: 50%;
+            width: 40%;
         }
 
         #claims_table {
