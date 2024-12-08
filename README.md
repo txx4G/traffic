@@ -1,3 +1,8 @@
+# Ссылки
+
+- [Тестовая версия онлайн](https://codd.syeysk.ru)
+- [Дизайн в Figme](https://www.figma.com/design/tL9QTX9SlS9szSuA7hxhfB/citypulse-(Community)?node-id=0-1&node-type=canvas&t=Wa5Ab24K5WYzUgjA-0) 
+
 # Установка
 
 ## На Linux
