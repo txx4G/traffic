@@ -9,12 +9,12 @@ class IndexView(View):
     def get(self, request):
         problems = list(Problem.objects.values('id', 'name'))
         problems = [{'link': resolve_url('problem', problem['id']), **problem} for problem in problems]
-        problems[0]['coords'] = [45.03585, 38.97408]
-        problems[1]['coords'] = [45.05284, 38.97688]
-        problems[2]['coords'] = [45.0435, 39.0007]
-        problems[3]['coords'] = [45.055200, 39.002765]
-        problems[4]['coords'] = [45.037441, 38.954626]
-        problems[5]['coords'] = [45.070221, 38.972861]
+
+        # TODO: это костыль
+        coords = [[45.03585, 38.97408], [45.05284, 38.97688], [45.0435, 39.0007], [45.055200, 39.002765], [45.037441, 38.954626], [45.070221, 38.972861]]
+        for index, problem in enumerate(problems):
+            problem['coords'] = coords[index] if index < len(coords) else [22, 45]
+
         context = {
             'problem_places': problems
             # [
