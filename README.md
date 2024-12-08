@@ -73,7 +73,7 @@ python manage.py runserver 8010
 
 ## Проверка доступности сервера
 
-<http://127.0.0.1:8010/>
+<http://127.0.0.1:8020/>
 
 ## Примените Nginx + Debian
 
@@ -82,7 +82,7 @@ python manage.py runserver 8010
 ```
 server {
     location / {
-        proxy_pass http://127.0.0.1:8010;
+        proxy_pass http://127.0.0.1:8020;
     }
     location /static/	 {
         sendfile on;
@@ -97,7 +97,7 @@ server {
         root /usr/share/nginx/html/traffic/static;
     }
 }
-```0
+```
 
 Установите сертификат SSL для домена, [согласно инструкциям](https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/) - поправка: возможно, на Вашем сервере нужно вместо команды `python` использовать `python3`.
 Если Вы ранее выполнили команды из инструкции, то выполните команду `sudo certbot --nginx -d вашдомен.рф -d www.вашдомен.рф`, чтобы получить сертификат.

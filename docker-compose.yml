@@ -10,7 +10,7 @@ services:
        && python3 manage.py makesuperuser
        && python3 manage.py runserver 0.0.0.0:8000"
     ports:
-      - 8010:8000
+      - 8020:8000
     volumes:
       - ./server:/app
       - /usr/share/nginx/html/traffic/static:/static
