@@ -5,15 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ЦОДД</title>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <!-- <script src="https://api-maps.yandex.ru/v3/?apikey=57dec7ab00274131915f10193ff16f29&lang=ru_RU"></script> -->
     {% block head %}{% endblock %}
     <!-- <script src="{% static 'js/index.js' %}"></script> -->
 </head>
 <body>
-    <header style="height:8vh;display:flex;flex-direction: row;">
+    <header style="height:10vh;display:flex;flex-direction: row;">
         <div style="text-align:center;">
-            <h1><span style="font-size:14pt;">Панель управления</span> <br> <span style="font-size:14pt;">оператора ЦОДД</span> </h1>
+            <div style="font-size:16pt;">Панель управления</div>
+            <div style="font-size:16pt;">оператора ЦОДД</div>
         </div>
         <div style="display: flex; align-items: center;">
             <a href="{% url 'index' %}">Главная</a>
@@ -32,7 +35,7 @@
         }
         header {
             justify-content: space-between;
-            padding: 10px 25px;
+            padding: 5px 25px;
         }
         header h1 {
             text-transform: uppercase;

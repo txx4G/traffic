@@ -12,6 +12,7 @@ function init() {
     let problems = document.getElementById('problems');
 
     // Добавляем метки на карту.
+    let i = 100;
     points.forEach(point => {
         const placemark = new ymaps.Placemark(
             point.coords,
@@ -27,8 +28,8 @@ function init() {
         });
 
         let problem_item = document.createElement('div');
-        problem_item.innerHTML = `<a href="${point.link}" target="_blank">${point.name}</a>`
+        problem_item.innerHTML = `<a href="${point.link}" target="_blank">${point.name} [<span style="color:red;">${i}</span>]</a>`
         problems.appendChild(problem_item);
-        
+        i -= 10;
     });
 }
