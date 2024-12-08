@@ -81,6 +81,8 @@ python manage.py runserver 8010
 
 ```
 server {
+    server_name вашдомен.рф www.вашдомен.рф;
+    root /usr/share/nginx/html/traffic;
     location / {
         proxy_pass http://127.0.0.1:8020;
     }
